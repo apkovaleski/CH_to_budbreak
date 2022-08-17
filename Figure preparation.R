@@ -1,11 +1,11 @@
 #### Load Packages ####
-library(ggplot2)
+library(agricolae)
 library(dplyr)
 library(ggbeeswarm)
 library(ggh4x)
-library(tidyr)
+library(ggplot2)
 library(patchwork)
-
+library(tidyr)
 
 
 #### Figure 1A ####
@@ -467,18 +467,18 @@ fig3b
 
 #### Summary statistics ####
 
+# Prepare stats: 1B
+print(LSD.test(lm(LTE ~ Trt, data = dat.Fig1B.LTE),"Trt")$groups)
+print(LSD.test(lm(BB_days ~ Trt, data = dat.Fig1B.BB),"Trt")$groups)
+
 # Prepare stats: 1C
 summary(lm(BB50~LTE, data=dat.Fig1C.combine))
 
 # Prepare stats: 2A
-dat.Fig2A.LT50.stat=subset(dat.Fig2A.LT50, days < 30)
-dat.Fig2A.LT50.stat$Temp=as.factor(dat.Fig2A.LT50.stat$Temperature)
-summary(lm(LT50~Temp+Temp:days, data=dat.Fig2A.LT50.stat))
+summary(lm(LT50~Temperature+Temperature:days, data=dat.Fig2A.LT50)) 
 
 # Prepare stats: 2B
-dat.Fig2B.LT50.stat=subset(dat.Fig2B.LT50, days < 41)
-summary(lm(LT50~Species+Species:days, data=dat.Fig2B.LT50.stat))
-
+summary(lm(LT50~Species+Species:days, data=dat.Fig2B.LT50))
 
 
 #### Box1 figure ####
