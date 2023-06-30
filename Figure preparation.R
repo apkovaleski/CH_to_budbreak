@@ -245,7 +245,7 @@ fig2a=ggplot()+
   geom_point(data=dat.Fig2A.LT50, aes(x=days, y=-LT50, color=as.factor(Temperature)), stat="summary", size=1.5, na.rm = T)+
   scale_y_continuous(limits=c(NA, NA),breaks=c(-28,-26,-24,-22), guide=guide_axis_truncated())+
   scale_x_continuous(limits=c(-0.5, 20.5), breaks=c(0,5,10,15,20), guide=guide_axis_truncated())+
-  scale_color_manual(values=c("#1a476f", "#7b92a8",  "#ffd200","#e37e00","#c10534"), labels=c("-3","-3+5",4,7,11))+
+  scale_color_manual(values=c("#1a476f", "#7b92a8", "#c10534", "#ffd200","#e37e00"), labels=c("-3","-3+5",11,4,7))+
   theme_bw(base_size=7)+
   theme(text= element_text(color="black", size=7),
         axis.text = element_text(size=7, color="black"),
@@ -575,10 +575,10 @@ ggsave(fig1a+plot_spacer()+fig1b+plot_spacer()+fig1c+plot_layout(widths=c(1,0.05
        height = 3)
 
 # Figure 2
-ggsave(fig2a/fig2b), #Export at 5 x 3
+ggsave(fig2a/fig2b+plot_layout(heights=c(.7,1)), #Export at 3 x 5.1
        filename = paste0("Fig2AB_", st, ".pdf", sep=""),
-       width = 3.2,
-       height = 6)
+       width = 3,
+       height = 5.1)
 
 # Figure 3
 ggsave(fig3a+plot_spacer()+fig3b+plot_spacer()+fig3c+plot_layout(widths = c(1,0.01,0.8,0.01,0.8)), #Export at 7.09 x 3.2
