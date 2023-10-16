@@ -563,6 +563,28 @@ box1d=ggplot()+
         legend.position = "bottom",
         legend.key.size = unit(1, 'lines'))
 
+box1e=ggplot()+
+  labs(y=expression("Cold hardiness"), x="Time under forcing")+
+  geom_polygon(aes(x=c(0,0,28),y=c(-55,-35,-55) ),color="black", size=0., lty=0, fill="#1a476f",alpha=0.4)+
+  geom_polygon(aes(x=c(0,0,9.3333),y=c(-30,-15,-30) ),color="black", size=0., lty=0, fill="#55752f",alpha=0.4)+
+  #geom_point(aes(x=30,y=-30), size=10, col="white")+
+  scale_y_continuous(limits=c(NA,NA), breaks=c(-15, -20,-25, -30, -35, -40,-45,-50,-55), labels=c(),  guide=guide_axis_truncated(trunc_lower = c(-30,-55),trunc_upper = c(-15,-35)))+
+  scale_x_continuous(limits=c(NA,44), breaks=c(0,7,14,21,28,35,42),labels=c(), guide=guide_axis_truncated())+
+  theme_bw(base_size=7)+
+  theme(text= element_text(color="black", size=7),
+        axis.text = element_text(size=7,color="black"),
+        axis.text.x = element_text(size=7,angle = 0, hjust = 0.5),
+        panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank(),
+        axis.line = element_line(size=0.2, color="black"),
+        axis.ticks = element_line(size=0.2,color="black"),
+        axis.ticks.length = unit(0.15, 'lines'),
+        panel.border = element_blank(),
+        legend.position = "bottom",
+        legend.key.size = unit(1, 'lines'))
+
+
+
 
 #### Arranging figures together and exporting to *directory* ####
 
@@ -587,10 +609,10 @@ ggsave(fig3a+plot_spacer()+fig3b+plot_spacer()+fig3c+plot_layout(widths = c(1,0.
        height = 3.2)
 
 # Box 1
-ggsave(box1a/box1b/box1c/box1d+plot_layout(heights=c(0.25,0.45,0.35,0.35)), # Export at 3.5 x 5.33
+ggsave(box1a/box1b/box1c/box1d/box1e+plot_layout(heights=c(0.25,0.45,0.35,0.35,0.4)), # Export at 3.5 x 6.785 (5.32 w/o box1e)
        filename = paste0("Box1_", st, ".pdf", sep=""),
        width = 3.5,
-       height = 5.33)
+       height = 6.785)
 
 
 #### End ####
